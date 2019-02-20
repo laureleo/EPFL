@@ -1,5 +1,6 @@
 # TODO
 Join group
+16.4 on weighed matroids
 
 # Lecture 1 Greediness
 ## Greedy algorithms
@@ -78,7 +79,9 @@ In the context of independent sets the definition is based on the following two 
 A matroid is a matematical object M = (S, I) such that:
 * S is the ground set, for example the set of edges in a graph or a set of vectors in space
 * I is a set of subsets of S satisfying two axioms. I is known as the independent set.
+
 > **Axiom 1** If X ∈ Y and Y ⊆ I then X ∈ I. This is the heridetary property.
+
 > **Axiom 2** If X and Y ∈ I and |Y| > |X|, then ∃e ∈ Y \ X : X ∪ {e} ∈ I. This is the exchange property.
 
 ### Examples
