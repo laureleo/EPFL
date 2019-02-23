@@ -92,6 +92,7 @@ Define I = {T⊆ E : T is acyclic}.
 * Independent set: A nonempty set of subsets where all subsets recursively fulfill the same property.
 * Extension: An element that you can add to an independent set without violating its independency property
 * Maximal: A independent set that has no extensions/Isn't a subset of another independent set
+* Base: A base for a matroid is a maximum cardinality set.
 
 # Lecture 2 Matroid Intersection and Bipartite Matchings
 When the matroid works and when it does not
@@ -146,6 +147,11 @@ If the algorithm selects an x, that x is part of the optimal independent set.
 ## Examples 
 ### Truncated matroid
 ### Partition matroid
+* M = (E, I)
+* E = A set of disjoint sets
+* I = {X| X is a subset of E such that |X intersect Ei | <= k for k1, k2...kl}
+
+
 ### Graphic matroid
 G = (V, E) is an undirected graph. Let
 * M = (E, I)
@@ -176,6 +182,30 @@ Property 2 holds since |X| > |Y| implies that X contains one more component, whi
 ### Counterexample, bipartite graph
 ### Arborescences (Intersection)
 ### Netflix (Intersection)
+
+# Exercise set 1
+## 1
+Prove that GREEDY returns the base of a metroid
+* Greedy adds independent elements as long as they can be added.
+* Let A be the solution returned by GREEDY and assume that it is not a base. Let B be a base.
+* Then |B| > |A| and per the second axiom there is an independent element e in B which could be added to A.
+* This causes a contradiction since our algorithm never added e to A, despite it being possible.
+## 2
+Prove that GREEDY is optimal for subsets of the problem as well.
+* Greedy is optimal for matroids.
+* Any matroid can be tranformed into a truncated matroid with a base of lower cardinality.
+* Since the truncated matroid is itself a matroid, GREEDY will perform optimally on it.
+* Thus GREEDY will be optimal for any subset of the original problem
+
+## 3
+Prove that the partion matroid is a matroid.
+* 
+
+## 4
+## 5
+## 6
+## 7
+
 
 # SYMBOLS
 ∈   BELONGS TO
