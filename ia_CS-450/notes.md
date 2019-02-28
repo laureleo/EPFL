@@ -1,6 +1,6 @@
 # TODO
 Notes
-Exercises
+Python
 
 # Lecture 1 Introduction
 ## qu'est-ce que l'intelligence?
@@ -59,7 +59,17 @@ Given premises and conclusion, infer rules
 #### Abduction
 Given rules and conclusion, infer premises.
 
-# Lecture 2 
+# Lecture 2 Inference
+## Inference sans variables
+### Inference par resolution
+#### Transformation en forme conjugative normale
+### Inference par chainage
+### Chainage avant.
+## Inference avec variables
+### Quantification
+#### Les fonctions de Skolem
+#### Resolution avec variables (L'unification)
+### Filtrage et unification
 
 # SYMBOLS
 ∈   BELONGS TO

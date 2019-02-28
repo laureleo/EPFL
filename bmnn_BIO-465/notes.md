@@ -1,9 +1,9 @@
 # TODO
-Vid 1, 2, 3, 4, 5
-Ch1
-Ch5
-Exercises
+Week1
+Vid 2, 3, 4, 5
+Ex 1, 2, 3, 4
 Python
+
 # Lecture 1 Overview
 ## Differential Equations
 ## 1.1 Neurons and Synapses:
@@ -66,15 +66,22 @@ The time for the voltage to fall to V0/e is called the RC time constant and is e
 
 tau = RC
 
-
 ### Signal primer
 * Impulse-response function: The output of a system when presented with a brief signal/pulse. Or more generally, the response of a dynamic system to any external change.       
-* Dirac delta-function
-### 1.3 Leaky Integrate-and-Fire Model
+### 1.3 Leaky Integrate-and-Fire Model (LIF)
+The model so far does not take into account the prescence of a threshold.
+
+When you have a threshold, the voltage is reset after each time it is reached.
+
+The stronger the current the faster the voltage is increased
+#### The F-I curve AKA Gain function
+A plot over the relationship between a CONSTANT current and frequency of hitting the threshold
 ### 1.4 Generalized Integrate-and-Fire Model
+When you replace the -(u - urest) part of the model with an arbitrary function f(u). Some popular versions are the quadratic and exponential ones
+
 ### 1.5. Quality of Integrate-and-Fire Models
-### RC-circuit
-A circuit with a resistor and a capacitor
+Quite good
+
 
 # Lecture 2
 # Lecture 3

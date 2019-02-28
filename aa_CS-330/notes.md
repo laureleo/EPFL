@@ -70,6 +70,7 @@ If it comes up again could be worth to check the data structure in more detail.
 **Basis:** A linearly independent set of vectors that span V.
 
 **Dimension** The size of the basis.
+
 ## Matroids
 A type of mathematical object that can be solved optimally with greedy algorithms.
 ### Definition
@@ -143,13 +144,49 @@ If the algorithm selects an x, that x is part of the optimal independent set.
 ## Proof of failure when no Downward closure
 ## Proof of failure when no Heredity
 ## Matroid intersection
+Any problem that can be described as the intersection of two matroids have an efficient solution (polynomial)
+
+Given two matroids M1, M2 defined on the same ground set E, the intersection of the two matroids is defined as M1 ∩ M2 = (E, I1 ∩ I2)
+
+For the classic example of matroid intersection, bipartite matching, you can define a matroid for both partition A and B.
+
+I1 will contain all possible matchings for A, I2 will contain all possible matchings for B.
+
+F belonging to the intersection of I1 and I2 will be the set of all solutions that are full matchings, and thus solutions.
 ### THEOREM Edmond
-## Examples 
+There is an efficient (polynomial) algorithm for finding a max-weight independent set in the intersection of two matroids.
+
+What efficient means in this time is that any subset can be checked for beloning to the independent set in polynomial time.
+
+This is important because while matroids can be solved optimally by greedy, this does not take into account the time required to check for independency.
+
+## Examples of matroids
 ### Truncated matroid
+Given an original Matroid
+* M = (E, I)
+A Truncated matroid is defined as 
+* M2 = (E, I2)
+* I2 = {X : X is a subset of I, |X| <= k for some k}
+Nice. Now let's check the axioms
+
+1. Downward closure: Does a subset B of A also belong to I?
+> Yes. If |A| <= k and |B| <= |A|, |B| <= k
+2. Extension:
+> Yes. Remember that sets belonging to I in the original matroid all exhibited the property that |A| > |B| => exists e in A\B that can be added to B without violating the inclusion to I. The new matroid is defined so that all sets in I2 belong to I. Thus the statement goes for E2 as well.
+
+This proves that the matroid is optimal for subproblems as well, so it's worth to take a stricter look on this proof.
+
 ### Partition matroid
 * M = (E, I)
 * E = A set of disjoint sets
 * I = {X| X is a subset of E such that |X intersect Ei | <= k for k1, k2...kl}
+
+* Property 1:
+> True. Any subset of X does also belong to I. Proof, assume that it is not true. Then there is at least one disjoint set Ek such that |A intersect Ei| > k.
+Yet A is a subset of X, meaning that it contains the exact same set or less elements than X. The removal of elements can never cause the intersection to increase, thus the assumption is false.
+
+* Property 2: If |A| > |B| then that means that for at least some partition Ek we have that |A intersect E| > |B intersect E|. And that basically proves it. Think about it.
+Do take not that this only works if the sets are disjoint.
 
 
 ### Graphic matroid
@@ -206,10 +243,71 @@ Prove that the partion matroid is a matroid.
 ## 6
 ## 7
 
+# Lecture 3: Linear 
+## Recap
+Greedy is optial for max-weight independent set.
+Greedy is polynomial for max-weight independent set of matroid intersection
+
+## Bipartite matching
+* Matching: Every vertex has at most degree 1.
+* Path: Sequences of vertices such that all vertices is unique and there is an edge between all consecutive vertices. 
+* Alternating path: For a matching M, a path P is alternating if the edges alternate between M and E\M. Alternating path is needed to maintain a matching
+* Augmenting path: For a matching M, an alternating path is a path that starts and ends with unmatched vertices. 
+
+## Augmenting path algortihm
+1. M = {}, no match
+2. WHILE EXISTS augmenting path P
+3. M = (M\MAP) UNION (P\M)
+> M symmetric differene P, remove the intersection
+4. Return M
+
+Augmenting path algorithm works in linear time for bipartite graphs. Not quite as good for general graphs.
+
+**Runtime** (|V| + |E|)(|V|)
+> Every time an augmenting path is found, Matching is increased by 1. Maximum matching is of size |V|. Algorithm runs at most |V| times.
+
+### Proof of optimal matching
+**Lemma:** A matching M is of maximum cardinality IFF there is no augmenting path
+
+**Prove:** OPT M => No augmenting path
+1. Suppose there exist an augmenting path P. But then  M symmetric matching P is a larger matching than M, contradicting the optimality of M.
+
+**Prove:** No augmenting path => OPT M <=> If matching M is not optimal then there is an augmenting path.
+1. Let M2 be the optimal solution, M be our solution |M2| > |M| 
+2. M2 SYMDIFF M 
+3. Every vertex has degree of most 2 =>
+4. Each component  is either a path or a cycle
+5. If you start with a degree one vertex you get a path
+6. If you start with degree 2 you get a cycle. 
+7. If it is a cycle then it is alternating by M2 and M and we have the same amount of edges from each set.
+8. Remove the cycles from M2 and M
+9. Then |M2| is still bigger than |M|
+10. Then we either start and end on white edges, red and white, red and red.
+11. We know that we have more red edges than white edges
+12. Thus at least one of the paths start and end with red, and that is an augmenting path.
+13. Thus, if M is not matching then there is an augmenting path.
+
+## Linear programming
+Optimize linear functions subject to linear inequalites
+
+You are not allowed to force values to take either-or values. You are allowed to define ranges however.
+
+### Linear programming as max weight bipartite matching
+The variables should correspond the decision you have to make
+
+For each edge e decide whether to take take e or not.
+> Thus we have one variable for each edge. e = 1 if e is taken, 0 otherwise
+
+We want to maximizesum xw(x)
+
+For all vertices: sum of edges incident to v x <= 1
+
+THm: An optimal solution to LP can be taken such that xe belongs to {0,1} for all edges if graph is bipartite
 
 # SYMBOLS
 ∈   BELONGS TO
 ∪   UNION
+∩   INTERSECT
 ^	AND
 ∨	OR
 ¬	NEGATION
